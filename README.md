@@ -1,6 +1,9 @@
 # LuxPower Inverter / Octopus Time-of-use Tariff Integration
 
-This is a Ruby script to parse [Octopus ToU tariff](https://octopus.energy/agile/) prices and control a [LuxPower ACS inverter](https://www.luxpowertek.com/ac-ess.html) according to rules you specify.
+This is a Ruby script to parse [Octopus ToU tariff](https://octopus.energy/agile/) prices and control a [LuxPower ACS inverter](https://www.luxpowertek.com/ac-ess.html) according to rules you specify. This was written by Chris Celsworth who developed it using a LuxPower AC Inverter. I have a Hybrid inverter and when I came to use this script I found that although it was able to read the values broadcast from the inverter (Elec Import, Elec Export, Solar PV etc) it failed to update settings on the inverter as the packets sent were not in the correct format or length. With help from my friend Mike Kaiser, we were able to identify that the ruby library "inifile" was casting the Inverter Serial number set in the config.ini file to a different type (still not sure what?). This seems to be driven by the fact that the first digit is a 0 which is the case for my Hybrid inverter but not for Chris's where his was a 9.
+
+To get around this problem I have prefixed an * to the Inverter Serial number in the config.ini file and then removed this in the Lux_Controller.rb file during the initialize method.
+Anyway, enjoy and thanks again to both Chris and Mike!
 
 The particular use-case of this is to charge your home batteries when prices are cheap, and use that power at peak times.
 

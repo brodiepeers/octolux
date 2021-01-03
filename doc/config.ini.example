@@ -1,7 +1,8 @@
 [lxp]
 host = 192.168.0.200
 port = 8000
-serial = 9393013580
+# Prefixed a * to the Inverter serial number. This is removed by the initialize method in lux_controller.rb.
+serial = *9393013580
 datalog = EF76460231
 batteries = 4
 
